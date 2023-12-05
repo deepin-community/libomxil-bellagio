@@ -12,3 +12,4 @@
 0014_fix_hardening.patch
 0015_port_gcc_10.patch
 0016_port_gcc_11.patch
+0017_patch_for_strncpy.patch

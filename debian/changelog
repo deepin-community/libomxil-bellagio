@@ -1,3 +1,10 @@
+libomxil-bellagio (0.9.3-8) unstable; urgency=low
+
+  * Fix FTBFS on mipsel. (Closes: #1028978)
+    - add debian/patches/0017_patch_for_strncpy.patch
+
+ -- Ying-Chun Liu (PaulLiu) <paulliu@debian.org>  Mon, 16 Jan 2023 22:35:07 +0800
+
 libomxil-bellagio (0.9.3-7) unstable; urgency=low
 
   * Fix FTBFS with GCC-11. (Closes: #984195)

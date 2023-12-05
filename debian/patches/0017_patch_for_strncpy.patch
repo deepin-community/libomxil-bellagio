@@ -1,0 +1,22 @@
+From: Ying-Chun Liu (PaulLiu) <paulliu@debian.org>
+Subject: fix FTBFS on mipsel
+ We got /usr/include/mipsel-linux-gnu/bits/string_fortified.h:95:10:
+ error: ‘__builtin_strncpy’ destination unchanged after copying no bes
+ [-Werror=stringop-truncation]
+ Thus we check the size before call strncpy.
+Bug-Debian: http://bugs.debian.org/1028978
+Index: libomxil-bellagio-0.9.3/src/omxregister.c
+===================================================================
+--- libomxil-bellagio-0.9.3.orig/src/omxregister.c
++++ libomxil-bellagio-0.9.3/src/omxregister.c
+@@ -107,7 +107,9 @@ static int showComponentsList(FILE* omxr
+ 		while ((temp_buffer[i] != '\0') && (temp_buffer[i] != ' ')) {
+ 			i++;
+ 		}
+-		strncpy(comp_name, temp_buffer, i);
++		if (i > 0) {
++			strncpy(comp_name, temp_buffer, i);
++		}
+ 		comp_name[i] = '\0';
+ 		temp_buffer += i;
+ 		if (*temp_buffer != '\0') {
